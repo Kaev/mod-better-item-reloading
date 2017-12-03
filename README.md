@@ -10,6 +10,7 @@ The following things must be changed in DBC files: <br>
 * ItemDisplayInfo
 * InventorySlotID
 * SheathID
+<br>
 Multiple items can be reloaded by splitting each entry id with a space like: .breload item 12345 23456 34567
 <br>
 <br>
