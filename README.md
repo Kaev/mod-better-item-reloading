@@ -13,4 +13,6 @@ The following things must be changed in DBC files: <br>
 <br>
 <br>
 Here's an example how i change an item on the fly in the database and reload it without restarting anything:<br>
-![Example](https://github.com/Kaev/BetterItemReloading/raw/master/Example.gif)<br>
+<p>
+    <img src="Example.gif" />
+</p>
