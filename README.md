@@ -14,5 +14,5 @@ The following things must be changed in DBC files: <br>
 <br>
 Here's an example how i change an item on the fly in the database and reload it without restarting anything:<br>
 <p>
-    <img src="Example.gif" />
+    <img src="Example.gif" height="747" width="595" />
 </p>
