@@ -84,8 +84,22 @@ public:
 
             if (hasItem == sObjectMgr->GetItemTemplateStore()->end())
             {
-                auto itContainer = const_cast<ItemTemplateContainer*>(sObjectMgr->GetItemTemplateStore());
-                itContainer->insert(std::make_pair(entry, ItemTemplate()));
+                auto itStore = const_cast<ItemTemplateContainer*>(sObjectMgr->GetItemTemplateStore());
+                itStore->insert(std::make_pair(entry, ItemTemplate()));
+                auto itStoreFast = const_cast<std::vector<ItemTemplate*>*>(sObjectMgr->GetItemTemplateStoreFast());
+
+                // Sadly, we have to reinsert all items here
+                uint32 max = 0;
+                for (ItemTemplateContainer::const_iterator itr = itStore->begin(); itr != itStore->end(); ++itr)
+                    if (itr->first > max)
+                        max = itr->first;
+                if (max)
+                {
+                    itStoreFast->clear();
+                    itStoreFast->resize(max + 1, NULL);
+                    for (ItemTemplateContainer::iterator itr = itStore->begin(); itr != itStore->end(); ++itr)
+                        (*itStoreFast)[itr->first] = &(itr->second);
+                }
             }
 
             itemTemplate = const_cast<ItemTemplate*>(&sObjectMgr->GetItemTemplateStore()->at(entry));
