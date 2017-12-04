@@ -79,7 +79,16 @@ public:
 
             Field* fields = result->Fetch();
 
-            ItemTemplate* itemTemplate = const_cast<ItemTemplate*>(&sObjectMgr->GetItemTemplateStore()->at(entry));
+            ItemTemplate* itemTemplate;
+            std::unordered_map<uint32, ItemTemplate>::const_iterator hasItem = sObjectMgr->GetItemTemplateStore()->find(entry);
+
+            if (hasItem == sObjectMgr->GetItemTemplateStore()->end())
+            {
+                auto itContainer = const_cast<ItemTemplateContainer*>(sObjectMgr->GetItemTemplateStore());
+                itContainer->insert(std::make_pair(entry, ItemTemplate()));
+            }
+
+            itemTemplate = const_cast<ItemTemplate*>(&sObjectMgr->GetItemTemplateStore()->at(entry));
 
             itemTemplate->ItemId = entry;
             itemTemplate->Class = uint32(fields[1].GetUInt8());
