@@ -586,11 +586,11 @@ public:
                     if (ct != sSpellsByCategoryStore.end())
                     {
                         const SpellCategorySet& ct_set = ct->second;
-                        if (ct_set.find(itemTemplate->Spells[i].SpellId) == ct_set.end())
-                            sSpellsByCategoryStore[itemTemplate->Spells[i].SpellCategory].insert(itemTemplate->Spells[i].SpellId);
+                        if (ct_set.find(std::pair(true, static_cast<unsigned int>(itemTemplate->Spells[i].SpellId))) == ct_set.end())
+                            sSpellsByCategoryStore[itemTemplate->Spells[i].SpellCategory].insert(std::pair(true, static_cast<unsigned int>(itemTemplate->Spells[i].SpellId)));
                     }
                     else
-                        sSpellsByCategoryStore[itemTemplate->Spells[i].SpellCategory].insert(itemTemplate->Spells[i].SpellId);
+                        sSpellsByCategoryStore[itemTemplate->Spells[i].SpellCategory].insert(std::pair(true, static_cast<unsigned int>(itemTemplate->Spells[i].SpellId)));
                 }
             }
 
