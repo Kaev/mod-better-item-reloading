@@ -30,7 +30,6 @@ public:
     {
         if (!*args)
             return false;
-
         Player* player = handler->GetSession()->GetPlayer();
         if (!player)
             return false;
@@ -39,9 +38,7 @@ public:
         std::vector<uint8> slots;
         std::vector<uint8> bagSlots;
 
-        Tokenizer entries(std::string(args), ' ');
-
-        for (Tokenizer::const_iterator itr = entries.begin(); itr != entries.end(); ++itr)
+        for (auto const& itr : Acore::Tokenize(std::string(args), ' ', false))
         {
             uint32 entry = uint32(atoi(*itr));
 
